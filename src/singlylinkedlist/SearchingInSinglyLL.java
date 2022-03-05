@@ -19,6 +19,7 @@ public class SearchingInSinglyLL {
         printList(head);
 
         System.out.println(searchIterative(head, 20));
+        System.out.println(searchRecursive(head, 5));
     }
 
     // utility functions
@@ -58,5 +59,16 @@ public class SearchingInSinglyLL {
     }
 
     // recursive search
-
+    static int searchRecursive (SearchNode head, int x) {
+        if (head == null)
+            return -1;
+        if (head.data == x)
+            return 1;
+        else {
+            int res = searchRecursive(head.next, x);
+            if (res == -1)
+                return -1;
+            else return (res + 1);
+        }
+    }
 }
