@@ -27,9 +27,18 @@ public class DoublyLLInsertion {
         head = insertBegin(1, head);
         System.out.println("After insert at begin");
         printList(head);
+        //insert end
         head = insertEnd(40, head);
         head = insertEnd(50, head);
         System.out.println("After insert at end");
+        printList(head);
+        //delete from head
+        head = deleteHead(head);
+        System.out.println("After deleting head");
+        printList(head);
+        //delete at end
+        head = deleteEnd(head);
+        System.out.println("After deleting at end");
         printList(head);
     }
 
@@ -51,6 +60,31 @@ public class DoublyLLInsertion {
         curr.next = temp;
         temp.prev = curr;
         return head;
+    }
+
+    static Node deleteHead(Node head) {
+        if (head == null || head.next == null)
+            return null;
+        else {
+            head = head.next;
+            head.prev = null;
+            return head;
+        }
+    }
+
+    static Node deleteEnd(Node head) {
+        if (head == null || head.next == null)
+            return null;
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.prev.next = null;
+        return head;
+    }
+
+    static void reverse(Node head) {
+
     }
 
     static void printList(Node head) {
