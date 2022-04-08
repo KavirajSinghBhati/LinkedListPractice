@@ -40,6 +40,9 @@ public class DoublyLLInsertion {
         head = deleteEnd(head);
         System.out.println("After deleting at end");
         printList(head);
+        head = reverse(head);
+        System.out.println("After reversing:");
+        printList(head);
     }
 
     static Node insertBegin(int data, Node head) {
@@ -83,8 +86,17 @@ public class DoublyLLInsertion {
         return head;
     }
 
-    static void reverse(Node head) {
-
+    static Node reverse(Node head) {
+        if (head == null || head.next == null)
+            return head;
+        Node temp = null, curr = head;
+        while (curr != null) {
+            temp = curr.prev;
+            curr.prev = curr.next;
+            curr.next = temp;
+            curr = curr.prev;
+        }
+        return temp.prev; //temp now holds new head
     }
 
     static void printList(Node head) {
