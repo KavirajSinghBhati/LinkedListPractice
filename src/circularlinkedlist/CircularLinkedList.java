@@ -32,6 +32,11 @@ public class CircularLinkedList {
         head = deleteHead(head);
 
         printList(head);
+
+        head = deleteKthNode(head, 4);
+        head = deleteKthNode(head, 4);
+
+        printList(head);
     }
 
     static Node insertBegin(Node head, int x) {
@@ -75,6 +80,18 @@ public class CircularLinkedList {
             head.next = head.next.next;
             return head;
         }
+    }
+
+    static Node deleteKthNode(Node head, int k) {
+        if (head == null)
+            return null;
+        if (k == 1)
+            deleteHead(head);
+        Node r = head;
+        for (int i = 0; i < k - 2; i++)
+            r = r.next;
+        r.next = r.next.next;
+        return head;
     }
 
     static void printList(Node head) {
