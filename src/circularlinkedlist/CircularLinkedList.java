@@ -27,6 +27,11 @@ public class CircularLinkedList {
         head = insertEnd(head, 50);
 
         printList(head);
+
+        head = deleteHead(head);
+        head = deleteHead(head);
+
+        printList(head);
     }
 
     static Node insertBegin(Node head, int x) {
@@ -58,6 +63,17 @@ public class CircularLinkedList {
             head.data = temp.data;
             temp.data = t;
             return temp;
+        }
+    }
+
+    static Node deleteHead(Node head) {
+        if (head == null || head.next == head) {
+            return null;
+        }
+        else {
+            head.data = head.next.data;
+            head.next = head.next.next;
+            return head;
         }
     }
 
