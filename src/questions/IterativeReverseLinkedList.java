@@ -12,7 +12,9 @@ public class IterativeReverseLinkedList {
 
         printList(head);
 
-        head = reverseNaive(head);
+        //head = reverseNaive(head);
+
+        head = reverseEfficient(head);
 
         printList(head);
     }
@@ -35,5 +37,18 @@ public class IterativeReverseLinkedList {
         for (Node curr = head; curr != null; curr = curr.next)
             curr.data = arr.remove(arr.size() - 1);
         return head;
+    }
+
+    static Node reverseEfficient(Node head) {
+        if (head == null)
+            return null;
+        Node curr = head, prev = null, next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev; // new head
     }
 }
