@@ -10,7 +10,9 @@ public class RecursiveReverseLinkedList {
 
         printList(head);
 
-        head = recursiveReverseNaive(head);
+        //head = recursiveReverseNaive(head);
+
+        head = recursiveReverseEfficient(head, null);
 
         printList(head);
     }
@@ -23,6 +25,14 @@ public class RecursiveReverseLinkedList {
         rest_tail.next = head;
         head.next = null;
         return rest_head;
+    }
+
+    static Node recursiveReverseEfficient(Node curr, Node prev) {
+        if (curr == null)
+            return prev;
+        Node next = curr.next;
+        curr.next = prev;
+        return recursiveReverseEfficient(next, curr);
     }
 
     static void printList(Node head) {
