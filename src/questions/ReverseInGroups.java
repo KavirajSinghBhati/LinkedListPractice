@@ -10,7 +10,7 @@ public class ReverseInGroups {
 
         printList(head);
 
-        head = recursiveReverseK(head, 3);
+        head = iterativeReverseK(head, 3);
 
         printList(head);
     }
@@ -30,6 +30,30 @@ public class ReverseInGroups {
             head.next = rest_head;
         }
         return prev;
+    }
+
+    static Node iterativeReverseK(Node head, int k) {
+        Node curr = head, prevFirst = null;
+        boolean isFirstPass = true;
+        while (curr != null) {
+            Node first = curr, prev = null, next = null;
+            int count = 0;
+            while (curr != null && count < k) {
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+                count++;
+            }
+            if (isFirstPass) {
+                head = prev;
+                isFirstPass = false;
+            } else {
+                prevFirst.next = prev;
+            }
+            prevFirst = first;
+        }
+        return head;
     }
 
     static void printList(Node head) {
